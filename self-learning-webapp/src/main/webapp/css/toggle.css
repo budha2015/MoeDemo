@@ -1,0 +1,62 @@
+.toggle-btn1 { 
+    text-align:centre; 
+    margin:5px 2px;
+    padding:0.4em 3em; 
+    color:#000; 
+    background-color:#FFF; 
+    border-radius:10px; 
+    display:inline-block; 
+    border:solid 1px #CCC; 
+    cursor:pointer;
+}
+
+.toggle-btn2 { 
+    text-align:centre; 
+    margin:5px 2px;
+    padding:0.4em 3em; 
+    color:#000; 
+    background-color:#FFF; 
+    border-radius:10px; 
+    display:inline-block; 
+    border:solid 1px #CCC; 
+    cursor:pointer;
+}
+
+
+.toggle-btn-grp.cssonly * {
+    width:140px;
+    height:30px;
+    line-height:30px;
+}
+.toggle-btn-grp.cssonly div {
+    display:inline-block;
+    position:relative;
+    margin:5px 2px;
+}
+
+.toggle-btn-grp.cssonly div label {
+    position:absolute;
+    z-index:0;
+    padding:0;
+    text-align:center;
+}
+
+.toggle-btn-grp.cssonly div input {
+    position:absolute;
+    z-index:1;
+    cursor:pointer;
+    opacity:0;
+}
+
+.toggle-btn-grp.cssonly div:hover label {
+    border:solid 1px #a0d5dc !important; 
+    background:#f1fdfe;
+}
+
+.toggle-btn-grp.cssonly div input:checked + label.toggle-btn1 {
+    background:lightgreen;
+}
+.toggle-btn-grp.cssonly div input:checked + label.toggle-btn2 {
+    color:#FFF; 
+    background:red;
+}

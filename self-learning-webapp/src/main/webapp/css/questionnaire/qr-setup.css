@@ -1,0 +1,22 @@
+span.qrName {
+	max-width: 196px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
+	overflow: hidden;
+	float: left;
+}
+.questTitleEdit {
+	float: left;
+}
+
+.ui-widget-content { color: none;}
+
+.mc_dd_opt {
+max-height: 200px;
+overflow-y: auto;
+overflow-x: hidden;
+}
+span.qt_ansOpt,
+span.qt_score {padding-bottom: 5px;}
+.questHeader .col-md-3 {padding-right: 0 !important; padding-left: 0 !important}

@@ -1,0 +1,407 @@
+// JavaScript Document
+	var jq=$.noConflict();	
+    jq(document).ready(function(){
+	//Organisation 
+		var i=1;
+	   jq('.row').on('click', '.addElement, .removeElement', function(e){
+           e.stopPropagation();
+           var jqthis = jq(this);
+           var el = jq(this).closest('.row');
+		  	var labelVal = el.children('label').html();
+            if(jqthis.hasClass('addElement')){				
+				el.clone().find('label').attr('for', labelVal + i).end().find('input').attr('id', labelVal + i).end().find('.addElement').hide().end().find('.removeElement').removeClass('hidden').end().insertAfter(el);			
+          }
+          else {
+            el.remove();
+          } i++;
+        });
+
+	//Custom Select Menu
+	 jq(".customSelect").selectmenu();
+	 jq('.ui-selectmenu-button').click(function(){
+		jq(this).find('.ui-icon').toggleClass('active');
+	 });
+	 if( !(jq('.ui-selectmenu-menu').is(':visible') )){
+		 jq('.ui-selectmenu-button').find('.ui-icon').removeClass('active');
+	 }
+	//Popup 	
+	jq('.createQuest, .questTitleEdit').on('click', function(){
+		jq('.questPopup').show();
+		jq('.popupBg').show();
+	});
+	jq('.closePopup, .closeBtn').on('click', function(){
+		jq('.questPopup').hide();
+		jq('.popupBg').hide();
+	});
+	
+	//Tabs
+	jq(".panel-tabs li").click(function() {
+        jq(".panel-tabs li").removeClass('active');
+        jq(this).addClass("active");
+        jq(".tab_content").hide();
+        var selected_tab = jq(this).find("a").attr("href");
+        jq(selected_tab).fadeIn();
+        return false;
+    });
+	
+	//Section Title Change
+	jq('.sectionTitle').hide();
+	jq('#sectionTitle').on('blur',function(){
+		var secTitleVal =  jq('#sectionTitle').val();
+		if(secTitleVal === '') {
+			  jq(this).show(); 
+		}
+		else {		 
+			jq('.sectionTitle').text(secTitleVal).show(); 
+			jq('.sectionTitle').attr('title',secTitleVal);
+			jq(this).hide(); 
+		}	   
+	 });
+	
+	jq('.sectionTitle').on('click', function(){
+		jq(this).hide();
+		jq('#sectionTitle').show();
+	});
+		
+		jq('.sectionTitle').on('blur', function(){		
+			var sectionVal = jq(this).val();
+			jq('.sectionTitle').replaceWith('<p class="sectionTitleStyle">'+sectionVal+'<p>');	
+		});				
+			jq('.sectionTitleStyle').on('click' , function(){
+				jq(this).replaceWith('<input type="text" placeholder="Untitled" class="sectionTitle" />');
+			});				
+			
+	//Dynamic Tab	
+	(function(){
+		jq('.addSection').on('click', function(){
+			 jq('.tab').removeClass('active');
+			 var dataValue = jq('.addSection').prev().data('link').split('').reverse().join('');
+			 var newVal = "abc" + (parseInt(dataValue) + 2);
+		     jq('.blueprintTab').clone().find('label').attr('for', newVal + 51).end().find('input').attr('id', (newVal + 51)).end().removeClass('blueprintTab').removeClass('hidden').addClass('active').attr('data-link', newVal).insertBefore('.addSection');
+             jq('.questionContainer').hide();  
+             jq('.blueprint').clone().removeClass('blueprint').removeClass('hidden').attr('id', newVal).show().appendTo('.questContainer');
+     });
+  
+       jq('.questContainer').on('click', '.tab', function(){
+	       var showContainer = jq(this).attr('data-link');
+	       jq('.tab').removeClass('active');
+	       jq(this).addClass('active');	
+	       jq('.questionContainer').hide();
+	       jq('#' + showContainer).show();
+	    });
+	 })();
+	
+	//Section Title Change
+	jq('.qt_editBox').hide();
+	jq('#qt_editBox').on('blur',function(){
+	var secTitleVal =  jq('#qt_editBox').val();
+    if(secTitleVal === '')
+		  jq(this).show();  
+	  else
+	  {		 
+		jq('.qt_editBox').text(secTitleVal).show(); 
+		jq('.qt_editBox').attr('title',secTitleVal);
+		jq(this).hide(); 
+	  }
+	   
+	 });
+	
+	jq('.qt_editBox').on('click', function(){
+		jq(this).hide();
+		jq('#qt_editBox').show();
+	});
+		
+		jq('.qt_editBox').on('blur', function(){		
+			var sectionVal = jq(this).val();
+			jq('.qt_editBox').replaceWith('<p class="editStyle">'+sectionVal+'<p>');	
+		});				
+			jq('.editStyle').on('click' , function(){
+				jq(this).replaceWith('<input type="text" placeholder="Untitled" class="qt_editBox" />');
+			});	
+				
+	//Add Multiple TextBox Rows	
+	jq('.qt_multiTxtBoxList').on('click', '.qt_add', function(e){
+			
+		jq(this).parents('.qt_multiTxtBoxList').append('<li class="clearfix qt_multiTxtBox_row"><input type="text" name="question" class="qt_ansOpt"/><input type="text" name="question" class="qt_score"/><button class="qt_add"></button><button class="qt_remove"></button></li>');		
+	
+	});
+	//Remove Multiple TextBox Rows
+	jq('.qt_multiTxtBoxList').on('click','.qt_remove', function(){
+		if(jq('.qt_multiTxtBox_row').length > 3){
+			jq(this).parents('.qt_multiTxtBox_row').remove();
+		}
+		else {alert('You cant delete further');}
+		
+	});	
+	
+	//Add Multiple Select CheckBox Rows
+	jq('.qt_multiChkBoxList').on('click', '.qt_add', function(e){
+			
+		jq(this).parents('.qt_multiChkBoxList').append('<li class="clearfix qt_multiChkBox_row"><input type="checkbox" class="qt_ms_chkbox" /><label></label><input name="question" class="qt_ansOpt" type="text"><input name="question" class="qt_score" type="text"><button class="qt_add"></button><button class="qt_remove"></button></li>');		
+	
+	});
+	//Remove Multiple CheckBox Rows
+	jq('.qt_multiChkBoxList').on('click','.qt_remove', function(){
+		if(jq('.qt_multiChkBox_row').length > 3){
+			jq(this).parents('.qt_multiChkBox_row').remove();
+		}
+		else {alert('You cant delete further');}
+		
+	});
+	 	 
+	/* Class Naming
+	mc-radio = bulkAnswer-multiChoice-radio;
+	mc-dropdown = bulkAnswer-multiChoice-dropdown;
+	ms-chkbox = bulkAnswer-multipleSelect-checkbox;
+	ms-dropdown = bulkAnswer-multipleSelect-dropdown;	
+	*/    
+	//Bulk Answer - MultiChoice - Radio
+	jq('.mc-radio').find('.save-bulkanswer').on('click',function(e){
+		e.stopPropagation();
+		var textVal = jq('.mc-radio').find('textarea').val();
+		 if(typeof textVal != ""){
+			 var arr = (textVal).split(';');
+			 var index = arr.length;
+			 for(var i=0; i < index; i++){	
+				jq('<div class="clearfix">').appendTo('.mc-radio .qt_mc_radio');
+				jq('<input class="checkbox" type="radio"/>').appendTo('.mc-radio .qt_mc_radio');		 
+				 jq('<input />',{
+				  value : arr[i]
+				//  class : 'qt_ansOpt' 
+				 }).appendTo('.mc-radio .qt_mc_radio');			 
+				 jq('<input class="qt_score"/>').appendTo('.qt_mc_radio');
+				  jq(this).parents('.mc-radio').find('textarea').val("");
+			  } 
+		  }			
+			  jq('.mc-radio .bulk-answer-panel').hide();
+	});
+	
+	//Bulk Answer - MultiChoice - Dropdown
+	jq('.mc-dropdown').find('.save-bulkanswer').on('click', function(e){
+		e.stopPropagation();
+		var textVal = jq('.mc-dropdown').find('textarea').val();		
+		 if(typeof textVal != ""){
+			 var arr = (textVal).split(';');
+			 var index = arr.length;
+			 for(var i=0; i < index-1; i++){
+			 jq('<input />',{
+			  value : arr[i]
+			 // class : 'bulk' 
+			 }).appendTo('.mc-dropdown .mc_dd_opt');			 
+			 jq('<input class="score"/>').appendTo('.mc-dropdown .mc_dd_opt');
+		  	} 
+		 }
+		  jq('.bulk-answer-panel').hide();
+	});
+	//Bulk Answer - Multiple Select - Checkbox
+	jq('.ms-chkbox').find('.save-bulkanswer').on('click', function(e){
+		e.stopPropagation();
+		var textVal = jq('.ms-chkbox').find('textarea').val();		
+		 if(typeof textVal != ""){
+			 var arr = (textVal).split(';');
+			 var index = arr.length;
+			 for(var i=0; i < index-1; i++){
+		 		jq('<input class="checkbox" type="checkbox"/>').appendTo('.ms-chkbox .qt_field_opt');		 
+			 	jq('<input />',{
+			  	value : arr[i]
+			  //	class : 'qt_ansOpt' 
+			 }).appendTo('.ms-chkbox .qt_field_opt');			 
+			 jq('<input class="qt_score"/><div class="clearfix">').appendTo('.ms-chkbox .qt_field_opt');
+		  	} 
+		 }
+		  jq('.bulk-answer-panel').hide();
+	});
+	//Bulk Answer - Multiple Select - Dropdown
+	jq('.ms-dropdown').find('.save-bulkanswer').on('click', function(e){
+		e.stopPropagation();
+		var textVal = jq('.ms-dropdown').find('textarea').val();		
+		 if(typeof textVal != ""){
+			 var arr = (textVal).split(';');
+			 var index = arr.length;
+			 for(var i=0; i < index-1; i++){	
+				jq('<input class="checkbox" type="checkbox"/>').appendTo('.ms-dropdown .mc_dd_opt');		 
+				 jq('<input />',{
+				  value : arr[i]
+				 // class : 'bulk' 
+				 }).appendTo('.ms-dropdown .mc_dd_opt');			 
+				 jq('<input class="score"/><div class="clearfix">').appendTo('.ms-dropdown .mc_dd_opt');
+			  } 
+		 }
+		  jq('.bulk-answer-panel').hide();
+	});
+	
+	//Bulk Answer Drop down Menu
+	jq('.mc_dd_opt').hide();
+	jq('.multiChoice_dd_select').on('click', function(e){
+		e.stopPropagation();
+		jq(this).toggleClass('toggle').siblings('.mc_dd_opt').toggle();	
+	});	
+	
+    jq('#acc').click(function(){
+        jq('#cc').show();
+        jq(this).hide();
+        return false;
+    });
+    
+    jq('#abcc').click(function(){
+        jq('#bcc').show();
+        jq(this).hide();
+        return false;
+    });
+    
+	// Switch Yes/No 
+  	jq('input.switch').bootstrapSwitch();
+	
+	jq('.bulk-answer').on('click', function(e){
+		e.stopPropagation();
+  		jq(this).siblings('.bulk-answer-panel').toggle();	
+  	});
+	
+	// open Settings panel
+  	jq('.icon-settings').on('click', function(e){
+		e.stopPropagation();
+  		jq(this).siblings('.settings-panel').toggle();
+  	});
+  	jq('.settings-btn button').on('click', function(){
+  		jq('.settings-panel').hide();
+	});
+	jq('button.cancel, button.save').on('click', function(){
+  		jq('.bulk-answer-panel').hide();
+	});
+	
+	/****** Comments Start *********/
+	 var availableTags = [
+		"Joe Paul",
+		"John Doe",
+		"Pratheepa Kalaiyarasan",
+		"Shailendra Dhobal"
+		];
+	jq(".fetchRecepient").autocomplete({
+		source: availableTags,
+		select: function(event, ui){
+			var toValues = jq('.toRecepient').val();
+			jq('.toRecepient').val(toValues + " " +ui.item.value + "; ");
+		}
+	});
+				
+	jq('.fetchRecepient').on('focus click', function(){
+	   jq(this).val('');	
+    });
+	
+	//Textarea Placeholder	
+	jq('.textArea').find('textarea').on('click keydown focusout', function(){	 
+		if(jq(this).val() == jq(this).attr('data-placeholder'))
+			jq(this).val(''); 
+	  });
+	  
+	  
+	  
+	  jq('.textArea').find('textarea').on('keyup focusout', function(){
+		  var placeholder = jq(this).attr('data-placeholder');			
+		  if(jq(this).val() == ''){
+			  jq(this).val(placeholder);
+			  jq(this).parents('.textArea').siblings('.btn').attr('disabled', 'disabled');  
+			  
+		  }
+		  else if(jq(this).val() == placeholder) {  
+			 jq(this).parents('.textArea').siblings('.btn').attr('disabled', 'disabled'); 	 
+		  }
+		  else{
+              /*if(jq(this).parents('.tab_content').attr('id') == 'private' && jq(this).parents('.textArea').siblings('.toRecepient').val() == '')
+			  jq(this).parents('.textArea').siblings('.btn').attr('disabled', 'disabled'); 
+			  else	*/
+			 jq(this).parents('.textArea').siblings('.btn').removeAttr('disabled');  
+		  }
+	  });
+	
+	//Button Participant
+	 jq('.btn-recepient').on('click', function(){
+		jq(this).next('.rName-detail').toggle();
+		jq(this).toggleClass('toggle');	
+	 });
+	 jq('.comments-reply .btn-post').on('click', function(){
+		jq(this).parents('.comments-reply').hide();	 
+	 });
+	 jq('.btn-reply').click(function(){
+	  	jq('.comments-reply').toggle().insertBefore(this).removeClass('hidden');
+	 });
+	 jq('.comments-trail h1').click(function(){
+		 jq(this).toggleClass('active').siblings('ul').slideToggle('slow');
+	 });
+	 //jq('comments-attach').on('click', function(){
+	 	//logic
+	 //});
+	 /****** Comments Ends *********/
+	 
+	 /****** Login Starts ********/
+	 jq('#forgotPwd-submit').click(function(){
+		 jq('#resetPwdDiv').show();
+	});
+	 
+	 /****** Login Ends ********/
+	 
+	//Sorting questions panel
+   	jq('.sortable').sortable({
+		connectWith: ".qt_settings",
+		handle: ".icon-sort"
+	});
+	
+	//Deleting questions panel
+	jq('.icon-delete').click(function(){
+  		jq(this).parents('.sortable > div').hide();
+  	});
+	
+		//Score Textbox
+	jq('.qt_score, .score').on('keypress focus',function (e) {
+		var key = window.e ? e.keyCode : e.which;
+		if (e.keyCode == 8 || e.keyCode == 46
+		 || e.keyCode == 37 || e.keyCode == 39) {
+			return true;
+		}
+		else if ( key < 48 || key > 57 ) {
+			return false;
+			
+		}
+		else return true;
+	});   
+	jq('.bulk-answer-panel, .settings-panel, .mc_dd_opt').click( function(e){
+        e.stopPropagation();
+    });
+	jq('html').click( function(){
+        jq('.bulk-answer-panel, .settings-panel, .mc_dd_opt').hide();
+    });
+  
+  // Drag and Drop
+	jq( ".questionn" ).sortable({
+		revert: true
+	});
+	
+	jq('#questType li').draggable({ 
+		connectToSortable: ".questionn",
+		helper: "clone",
+		revert: "invalid"   
+	});
+					
+	jq('.questionn').droppable({
+	  drop: function(event, ui){
+		  ui.draggable.find('.hide').show().end().find('.show').hide();
+	  }
+	}
+	);
+	  
+  	//Date Picker
+	jq(".datepicker").datepicker({
+		showOn: "button",
+		changeMonth: true,
+		changeYear: true
+	});
+	jq(".ui-datepicker-trigger").empty().html('<i class="icon-datePicker">');
+	  
+	 //Randon ID generator
+		 function randonNumber(){
+		  var rNum = Math.floor((Math.random() + 1) * 0x1000000000).toString(36).substring(1);                             
+		  return rNum;                             
+		}    
+	
+  });
+  

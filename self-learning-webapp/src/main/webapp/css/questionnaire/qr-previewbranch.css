@@ -1,0 +1,11 @@
+  .branchPreview {padding: 2em; margin-bottom: 1em;}
+  .branchPreview table th{ height: 45px; }
+  .branchPreview table td,.branchPreview table th {padding: 10px}
+  .emptyRow {border-bottom : #e5e6e5 1px solid !important}
+  .emptyRow td{background:#fff !important;}
+  .btn-group {margin-bottom: 2.5em; float: right; }
+  .btn-group button {background: rgb(48, 91, 127)}
+  .sourceQuestion span {display: none; }
+  .questHeader .title {float:left}
+  .contentPanel {padding: 0 !important;margin-top: 10px; float: left;width: 100%;}
+  .btn {border-radius: 0 !important} 

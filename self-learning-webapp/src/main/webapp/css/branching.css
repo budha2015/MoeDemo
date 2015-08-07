@@ -1,0 +1,118 @@
+.setupQuestContainer{float:left;width:100%}
+.multiChoice_dd{float:left}
+.col-md-8{width: 75.667%;min-height:600px}
+.branch-info{width:100%;float:left;margin: 1em 0;}
+.branch-info p{width:50%;float:left}
+.questContainer{border-left:1px solid #e1e3eb}
+.branching-select{color:rgb(48, 91, 127); padding-bottom: 1em;}
+.col-md-4,.branch-footer .footer-right {width:24.333%;border:0}
+.mc_dd_opt{width:294px;padding:1em 0}
+.target-question .mc_dd_opt{width:125px;margin-top:26px;margin-left:22px}
+.mc_dd_opt input{border:0 !important;font-size:18px;border-radius:0 !important;width:100%}
+.mc_dd_opt input:hover{cursor:pointer;color:#11b1aa;background:#ccc}
+.new-branch{height:auto;padding:5px 15px;background:#CCC;color:#AEB7B5;float:right;margin-top:30px}
+.branch-footer{width:100%;float:left;padding:10px; padding-left:0}
+.branch-footer .footer-right{float:left;}
+.branch-footer  button{background:rgb(48, 91, 127);padding:5px 25px; color: #fff}
+.branch-footer  button:hover{color:#fff;background:rgb(48, 91, 127)}
+.branch-footer .footer-left{float:right}
+.branch-footer .footer-left button{margin-left:10px}
+.head{width:100%;border-bottom:1px solid #ccc;padding:2px;height:20px; font-size: 0.9em}
+.header { float: left; text-align: left;}
+.answer-option{width:145px;}
+.skip{width:75px;}
+.target-question{width:180px;}
+.mandatory{width:100px;}
+.attachment{width:120px;float:left;} 
+.add-target{margin-left: 25px}
+.data-display-body .body div{float:left}
+.data-display-body .body{display:inline-block;width:100%;padding:20px 2px}
+.customInput label{float:none}
+.qt_field_opt-add{float:left;width:100%;color:#fff!important}
+.qt_field_opt-add.new{margin-top:25px}
+.select-per-page.show{width:238px}
+.customSelect {width: 155px}
+.addBranch { width: 214px}
+.branchPreview {float:left; display: block}
+.displayHidden {visibility: hidden}
+.mt { margin-top: 1.2em}
+button[disabled], input[disabled] { background:#ccc }
+.data-display {margin-top: 2em;}
+.switch-light > span span{margin-top:2px; margin-left:51px;}
+input[type=checkbox] {margin: 0;}
+.target-question .ui-selectmenu-button {top: -4px}
+.ui-selectmenu-menu {border: rgb(48, 91, 127) 1px solid !important;
+border-top: none !important;
+background: #fff; }
+.ui-menu {border: none !important;border-radius: 0;top: 0;}
+.ui-menu.ui-widget {height: 175; top: 0 !important; }
+.col-md-8.questContainer {margin-bottom: 90px}
+/*Custom slider*/
+.switch-light{width:60px !important;}
+.switch-slider.switch-light > span:before {width: 73%;}
+.switch-slider.switch-light input:checked ~ a {margin-left: -2.6em;}
+.data.skip, .data.mandatory, .data.attachment {font-size: 0.8em;}
+.switch-light > span { height: 20px; }
+.switch-light > span span {margin-top: 0;margin-left: 37px;}
+.btn:hover, .btn:focus {color: #fff}
+.branching .add-target {position: relative; top: -8px; left: -5px}
+.skip label {margin-left: 2px}
+.add-target {margin-left: 20px !important}
+.branchform .mt.fr { padding: 5px 25px}
+.btn {border-radius: 0 !important}
+.data-display-body .mandatory label {margin-left: 2px} 
+.branchPreview table th{ height: 45px; }
+  .branchPreview table td,.branchPreview table th {padding: 15px 10px}
+  .emptyRow {border-bottom : #e5e6e5 1px solid !important}
+  .emptyRow td{background:#fff !important;}
+  .btn-group {margin-bottom: 2.5em; float: right; margin-top: 1em}
+  .btn-group button {background: rgb(48, 91, 127)}
+  .sourceQuestion span {display: none; }
+  .questHeader .title {float:left}
+  .contentPanel {padding: 0 !important;margin-top: 10px; float: left;width: 100%;}
+  .btn {border-radius: 0 !important} 
+  .branchResponse {position: absolute; display:none; z-index: 9999999; padding: 0 18px; background: #fff; width:100%}
+  .branchResponse .title {padding-left: 0}
+  .tooltop {
+         float: left;
+         text-align: left;
+         background: #fff;
+         z-index: 1;
+         border: 1px solid #428bca;
+         border-radius: 5px;
+         box-shadow: 0 0 5px #ccc;
+         font-size: 0.8em;
+         position: absolute;
+         min-width: 200px;
+         display:none;
+         min-height: 50px;
+         text-align:center;
+         padding:10px;
+         word-break: break-all;
+         }
+		 .tooltop:before, .tooltop:after {
+			content: "";
+			position: absolute;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			top: 103%;
+			left: 12%;
+			margin-left: -10px;
+		}
+	    .tooltop:before {
+		   border-top: 10px solid #428bca;
+		   margin-top: -1px;
+	     }
+		
+		.tooltop:after {
+			border-top: 10px solid #fff;
+			margin-top: -3px;
+			z-index: 1;
+		 }
+		 .branchPreviewHead { border-bottom:#e1e3eb 1px solid }
+		 .tagHead {border-bottom: #e1e3eb 1px solid}
+		 .tagBody {border-bottom: #e1e3eb 1px solid}
+#branchSelect .ui-menu {width: 210px !important}
+#targetSelect .ui-menu {width: 153px !important}
+.footer {position: static !important} 
+ 
