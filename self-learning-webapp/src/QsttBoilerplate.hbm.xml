@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.QsttBoilerplate" table="qstt_boilerplate">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name">
+                <comment>Name of Question Template</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true">
+                <comment>Date when the record was created</comment>
+            </column>
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by">
+                <comment>Record is created by whom</comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" not-null="true">
+                <comment>Date when the record was last updated</comment>
+            </column>
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by">
+                <comment>Record is updated by whom</comment>
+            </column>
+        </property>
+        <set name="qsttBoilerplateQuestions" table="qstt_boilerplate_question" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_boilerplate_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttBoilerplateQuestion" />
+        </set>
+    </class>
+</hibernate-mapping>

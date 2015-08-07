@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.QsttLink" table="qstt_link">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="linkName" type="string">
+            <column name="link_name" length="45" />
+        </property>
+        <property name="min" type="java.lang.Short">
+            <column name="min" />
+        </property>
+        <property name="max" type="java.lang.Short">
+            <column name="max" />
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true" />
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by" />
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" not-null="true" />
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by" />
+        </property>
+        <set name="qsttScoreSchemes" table="qstt_score_scheme" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="qstt_link_id" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttScoreScheme" />
+        </set>
+        <set name="qsttQuestionnaireDefs" table="qstt_questionnaire_def_qstt_link" inverse="false" lazy="true" fetch="select" >
+            <key>
+                <column name="link_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.rfg.tprm.questionnaire.model.QsttQuestionnaireDef">
+                <column name="questionnaire_def_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

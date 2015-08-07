@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<!-- <hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.QsttQuestionnaireDef" table="qstt_questionnaire_def" catalog="colorado">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true">
+                <comment>name of questionnaire</comment>
+            </column>
+        </property>
+        <property name="language" type="string">
+            <column name="language" length="45">
+                <comment>this refers to the in which language the questionnaire to be</comment>
+            </column>
+        </property>
+        <property name="isInternal" type="boolean">
+            <column name="is_internal" not-null="true">
+                <comment>This holds 1 or 0 for internal or external respectively</comment>
+            </column>
+        </property>
+        <property name="score" type="java.lang.Short">
+            <column name="score">
+                <comment>cumulative score against the questionnaire</comment>
+            </column>
+        </property>
+        <property name="versionNumber" type="java.lang.Byte">
+            <column name="version_number">
+                <comment>This refers to the different version of the same questionnaire</comment>
+            </column>
+        </property>
+        <property name="validityStartDate" type="timestamp">
+            <column name="validity_start_date" length="19" />
+        </property>
+        <property name="validityEndDate" type="timestamp">
+            <column name="validity_end_date" length="19" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="11">
+                <comment>This refers to the questionnaire status like approved in progress,rejected etc.</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true">
+                <comment>Date when the record was created</comment>
+            </column>
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by">
+                <comment>Record is created by whom</comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" not-null="true">
+                <comment>Date when the record was last updated</comment>
+            </column>
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by">
+                <comment>Record is updated by whom</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <set name="qsttLinks" table="qstt_questionnaire_def_qstt_link" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="questionnaire_def_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.rfg.tprm.questionnaire.model.QsttLink">
+                <column name="link_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="qsttQuestionMaps" table="qstt_question_map" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_questionnaire_def_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttQuestionMap" />
+        </set>
+        <set name="qsttScoreSchemes" table="qstt_score_scheme" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_questionnaire_def_id" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttScoreScheme" />
+        </set>
+        <set name="qsttQuestionnaires" table="qstt_questionnaire" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_questionnaire_def_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttQuestionnaire" />
+        </set>
+        <set name="qsttQuestionSectionScores" table="qstt_question_section_score" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_questionnaire_def_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttQuestionSectionScore" />
+        </set>
+        <set name="businessCaseQuestionnaires" table="business_case_questionnaire" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_questionnaire_def_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.BusinessCaseQuestionnaire" />
+        </set>
+    </class>
+</hibernate-mapping>
+ -->
+
+
+<hibernate-mapping>
+	<class name="com.rfg.tprm.questionnaire.model.QsttQuestionnaireDefQsttLink" table="qstt_questionnaire_def_qstt_link" >
+		<composite-id>
+			<key-property name="questionnaireDefId" column="questionnaire_def_id"></key-property>
+			<key-property name="linkId" column="link_id"></key-property>
+		</composite-id>		
+	</class>
+</hibernate-mapping>
+

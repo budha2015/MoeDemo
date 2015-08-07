@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+
+    <class name="com.rfg.tprm.questionnaire.model.QsttScoreSchemeRange" table="qstt_score_scheme_range" >
+
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="qsttScoreScheme" class="com.rfg.tprm.questionnaire.model.QsttScoreScheme" fetch="select">
+            <column name="qstt_score_scheme_id" not-null="true" />
+        </many-to-one>
+        <property name="minScore" type="java.lang.Short">
+            <column name="min_score" />
+        </property>
+        <property name="maxScore" type="java.lang.Short">
+            <column name="max_score" />
+        </property>
+        <property name="instruction" type="string">
+            <column name="instruction" />
+        </property>
+        <property name="riskLabel" type="string">
+            <column name="risk_label" length="45" />
+        </property>
+        <property name="remediation" type="long">
+            <column name="remediation_def_id" />
+        </property>
+        <property name="notification" type="string">
+            <column name="notification" length="65535" />
+        </property>
+        <property name="ddTask" type="java.lang.Long">
+            <column name="DD_Task">
+                <comment>This take the values from DD service id from DD servcies</comment>
+            </column>
+        </property>
+        <property name="ddRequiresApproval" type="java.lang.Boolean">
+            <column name="DD_requires_approval">
+                <comment>Populated as 1 automatically for DD which requires approval (Manual DD) Default 0 (auto DD)</comment>
+            </column>
+        </property>
+        <property name="iwRequiresApproval" type="java.lang.Boolean">
+            <column name="IW_requires_approval">
+                <comment>Populated as 1 automatically for IW which requires approval (Manual IW), Default 0 (auto IW)</comment>
+            </column>
+        </property>
+        <property name="iwTask1" type="java.lang.Long">
+            <column name="IW_Task_1">
+                <comment>This refers the values from id from IW services</comment>
+            </column>
+        </property>
+        <property name="iwTask2" type="java.lang.Long">
+            <column name="IW_Task_2">
+                <comment>This refers the values from id from IW services</comment>
+            </column>
+        </property>
+        <property name="iwTask3" type="java.lang.Long">
+            <column name="IW_Task_3">
+                <comment>This refers the values from id from IW services</comment>
+            </column>
+        </property>
+        <property name="remediationIsAuto" type="java.lang.Boolean">
+            <column name="Remediation_is_auto">
+                <comment>Populated as 0 automatically for Remediation which requires manual intervention, Default 1</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true" />
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by">
+                <comment>Record is created by whom</comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" />
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by">
+                <comment>Record is updated by whom</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

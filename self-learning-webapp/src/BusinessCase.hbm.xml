@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.BusinessCase" table="business_case">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="label" type="string">
+            <column name="label" length="45" />
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createBy" type="string">
+            <column name="create_by" length="45" />
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" />
+        </property>
+        <property name="updateBy" type="string">
+            <column name="update_by" length="45" />
+        </property>
+        <set name="businessCaseQuestionnaires" table="business_case_questionnaire" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="business_case_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.BusinessCaseQuestionnaire" />
+        </set>
+        <set name="qsttQuestions" table="business_case_question" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="business_case_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.rfg.tprm.questionnaire.model.QsttQuestion">
+                <column name="question_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

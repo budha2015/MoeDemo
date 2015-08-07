@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 10, 2014 2:38:56 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class name="com.rfg.tprm.questionnaire.model.QsttQuestionBranch" table="qstt_question_branch">
+    <composite-id class="com.rfg.tprm.questionnaire.model.QsttQuestionBranchId" name="id">
+      <key-property name="questionId" type="long">
+        <column name="question_id" unique-key="foo"/>
+      </key-property>
+      <key-property name="qsttQuestionnaireDefId" type="long">
+        <column name="qstt_questionnaire_def_id" unique-key="foo"/>
+      </key-property>
+    </composite-id>
+    <one-to-one class="com.rfg.tprm.questionnaire.model.QsttQuestionMap" constrained="true" name="qsttQuestionMapByQsttQuestionBranchQsttQuestionMapFk2"/>
+    <many-to-one class="com.rfg.tprm.questionnaire.model.QsttQuestionMap" fetch="select" name="qsttQuestionMapByQsttQuestionBranchQsttQuestionMapFk1">
+      <column name="d_question_id" unique-key="foo"/>
+      <column name="d_questionnaire_def_id"/>
+    </many-to-one>
+    <property name="ansOptionId" type="java.lang.Long" >
+      <column name="ans_option_id" unique-key="foo">
+        <comment>This will hold the answer value against source_question_answer_option which decides wether it should be branched or not</comment>
+      </column>
+    </property>
+    <property name="isSkip" type="boolean">
+      <column name="is_skip" not-null="true">
+        <comment>Default is Zero, which means that the question cannot be skipped i.e subsequent question can be answered, only if this question is answered
+                first.</comment>
+      </column>
+    </property>
+    <property name="isMandatory" type="boolean">
+      <column name="is_mandatory" not-null="true">
+        <comment>Default is zero, which means that the dependant question may or may not be answered by respondent.</comment>
+      </column>
+    </property>
+   <!--  <property name="tagName" type="string">
+      <column length="45" name="tag_name"/>
+    </property> -->
+    <property name="createDate" type="timestamp" insert="false" generated="always">
+      <column length="19" name="create_date"/>
+    </property>
+    <property name="createBy" type="java.lang.Long">
+      <column name="create_by">
+        <comment>Record is created by whom</comment>
+      </column>
+    </property>
+    <property name="updateDate" type="timestamp" insert="false" generated="always">
+      <column length="19" name="update_date"/>
+    </property>
+    <property name="updateBy" type="java.lang.Long">
+      <column name="update_by">
+        <comment>Record is updated by whom</comment>
+      </column>
+    </property>
+    <!-- <property name="DQuestionnaireId" type="java.lang.Long">
+      <column name="d_questionnaire_id"/>
+    </property> -->
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.QsttQuestionCategory" table="qstt_question_category">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true">
+                <comment>This refers to the legal , general etc. by default category will be general</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535">
+                <comment>This refers to the detail needed to explain about the question category like legal , general etc.</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true">
+                <comment>Date when the record was created</comment>
+            </column>
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by">
+                <comment>Record is created by whom</comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" not-null="true">
+                <comment>Date when the record was last updated</comment>
+            </column>
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by">
+                <comment>Record is updated by whom</comment>
+            </column>
+        </property>
+        <set name="qsttQuestions" table="qstt_question" inverse="true" lazy="true" fetch="join">
+            <key>
+                <column name="question_category_id" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttQuestion" />
+        </set>
+    </class>
+</hibernate-mapping>

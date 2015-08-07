@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.QsttQuestionMap" table="qstt_question_map">
+        <composite-id name="id" class="com.rfg.tprm.questionnaire.model.QsttQuestionMapId">
+            <key-property name="qsttQuestionId" type="long">
+                <column name="qstt_question_id" />
+            </key-property>
+            <key-property name="qsttQuestionnaireDefId" type="long">
+                <column name="qstt_questionnaire_def_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="qsttQuestion" class="com.rfg.tprm.questionnaire.model.QsttQuestion" update="false" insert="false" fetch="select">
+            <column name="qstt_question_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="qsttQuestionnaireDef" class="com.rfg.tprm.questionnaire.model.QsttQuestionnaireDef" update="false" insert="false" fetch="select">
+            <column name="qstt_questionnaire_def_id" not-null="true" />
+        </many-to-one>
+        <property name="sectionLabel" type="string">
+            <column name="section_label" length="45" />
+        </property>
+        <property name="tagName" type="string">
+            <column name="tag_name" length="45" />
+        </property>
+        <property name="sectionOrder" type="java.lang.Short">
+            <column name="section_order" />
+        </property>
+        <property name="questionOrder" type="java.lang.Short">
+            <column name="question_order" />
+        </property>
+        <property name="isMandatory" type="boolean">
+            <column name="is_mandatory" not-null="true" />
+        </property>
+        <property name="isBranch" type="boolean">
+            <column name="is_branch" not-null="true">
+                <comment>Zero is default, which means that there is no branching.</comment>
+            </column>
+        </property>
+        <property name="versionNumber" type="short">
+            <column name="version_number" not-null="true" />
+        </property>
+        <property name="validityStartDate" type="timestamp">
+            <column name="validity_start_date" length="19" />
+        </property>
+        <property name="validityEndDate" type="timestamp">
+            <column name="validity_end_date" length="19" />
+        </property>
+        <property name="isAttachment" type="boolean">
+            <column name="is_attachment" not-null="true">
+                <comment>1 or 0 for attchment required or not requred respectively</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true" />
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by">
+                <comment>Record is created by whom</comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" not-null="true" />
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by">
+                <comment>Record is updated by whom</comment>
+            </column>
+        </property>
+        <set name="qsttQuestionOptionScores" table="qstt_question_option_score" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qr_question_id" not-null="true" />
+                <column name="questionnaire_def_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttQuestionOptionScore" />
+        </set>
+        <set name="qsttQuestionBranchesForQsttQuestionBranchQsttQuestionMapFk1" table="qstt_question_branch" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="d_question_id" />
+                <column name="d_questionnaire_def_id" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttQuestionBranch" />
+        </set>
+        <one-to-one name="qsttQuestionBranchByQsttQuestionBranchQsttQuestionMapFk2" class="com.rfg.tprm.questionnaire.model.QsttQuestionBranch"></one-to-one>
+    </class>
+</hibernate-mapping>

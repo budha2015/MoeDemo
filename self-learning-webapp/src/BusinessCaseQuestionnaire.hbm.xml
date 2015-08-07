@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.BusinessCaseQuestionnaire" table="business_case_questionnaire" >
+        <composite-id name="id" class="com.rfg.tprm.questionnaire.model.BusinessCaseQuestionnaireId">
+            <key-property name="qsttQuestionnaireDefId" type="long">
+                <column name="qstt_questionnaire_def_id" />
+            </key-property>
+            <key-property name="businessCaseId" type="long">
+                <column name="business_case_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="qsttQuestionnaireDef" class="com.rfg.tprm.questionnaire.model.QsttQuestionnaireDef" update="false" insert="false" fetch="select">
+            <column name="qstt_questionnaire_def_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="businessCase" class="com.rfg.tprm.questionnaire.model.BusinessCase" update="false" insert="false" fetch="select">
+            <column name="business_case_id" not-null="true" />
+        </many-to-one>
+        <property name="labelName" type="string">
+            <column name="label_name" length="45">
+                <comment>name of label</comment>
+            </column>
+        </property>
+        <property name="clourCode" type="string">
+            <column name="clour_code" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

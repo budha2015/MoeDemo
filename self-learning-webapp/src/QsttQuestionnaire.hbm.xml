@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2014 8:00:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.rfg.tprm.questionnaire.model.QsttQuestionnaire" table="qstt_questionnaire">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="qsttQuestionnaireDef" class="com.rfg.tprm.questionnaire.model.QsttQuestionnaireDef" fetch="select">
+            <column name="qstt_questionnaire_def_id" not-null="true" />
+        </many-to-one>
+        <property name="sender" type="string">
+            <column name="sender">
+                <comment>refers to who sends the questionnaire to appropriate recipients</comment>
+            </column>
+        </property>
+        <property name="sentOn" type="timestamp">
+            <column name="sent_on" length="19">
+                <comment>date on which the question was sent to third party or organisation or their users</comment>
+            </column>
+        </property>
+        <property name="submitDate" type="timestamp">
+            <column name="submit_date" length="19">
+                <comment>Date on which question was submitted by organizations or their users</comment>
+            </column>
+        </property>
+        <property name="responder" type="string">
+            <column name="responder">
+                <comment>user submit the response back to the sender</comment>
+            </column>
+        </property>
+        <property name="recipient" type="string">
+            <column name="recipient" length="65535" not-null="true">
+                <comment>list of internal users getting the same questionnier</comment>
+            </column>
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="13">
+                <comment>new saved submited referred back</comment>
+            </column>
+        </property>
+        <property name="totalScore" type="java.lang.Short">
+            <column name="total_score">
+                <comment>score for the question instance</comment>
+            </column>
+        </property>
+        <property name="thirdParty" type="string">
+            <column name="third_party">
+                <comment>name of the comapny(third party ) to which questionniare will be sent</comment>
+            </column>
+        </property>
+        <property name="isActive" type="java.lang.Boolean">
+            <column name="is_active">
+                <comment>1 for active 0 for in active questionniare instance</comment>
+            </column>
+        </property>
+        <property name="versionNumber" type="java.lang.Byte">
+            <column name="version_number" />
+        </property>
+        <property name="validityStartDate" type="timestamp">
+            <column name="validity_start_date" length="19" />
+        </property>
+        <property name="validityEndDate" type="timestamp">
+            <column name="validity_end_date" length="19" />
+        </property>
+        <property name="createDate" type="timestamp" insert="false" generated="always">
+            <column name="create_date" length="19" not-null="true">
+                <comment>Date when the record was created</comment>
+            </column>
+        </property>
+        <property name="createBy" type="java.lang.Long">
+            <column name="create_by">
+                <comment>Record is created by whom</comment>
+            </column>
+        </property>
+        <property name="updateDate" type="timestamp" insert="false" generated="always">
+            <column name="update_date" length="19" not-null="true">
+                <comment>Date when the record was last updated</comment>
+            </column>
+        </property>
+        <property name="updateBy" type="java.lang.Long">
+            <column name="update_by">
+                <comment>Record is updated by whom</comment>
+            </column>
+        </property>
+        <set name="qsttAnswers" table="qstt_answer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="qstt_questionnaire_id" not-null="true" />
+            </key>
+            <one-to-many class="com.rfg.tprm.questionnaire.model.QsttAnswer" />
+        </set>
+    </class>
+</hibernate-mapping>
