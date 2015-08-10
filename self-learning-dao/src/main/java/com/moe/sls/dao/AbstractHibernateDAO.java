@@ -2,7 +2,7 @@ package com.moe.sls.dao;
 
 public abstract class  AbstractHibernateDAO {
 
-	private SessionFactory sessionFactory ; 
+	private SessionFactory sessionFactorya ; 
 	private static ServiceRegistry serviceRegistry;
 	private Session session;
 
